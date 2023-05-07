@@ -11,12 +11,10 @@
 <body>
 <div class="header-area">
     <div class="left">
-        <ul class="left-list">
-            <li class="list">Pets</li>
-            <li class="list">Friends</li>
-            <li class="list">Games</li>
-            <li class="list">Mission</li>
-        </ul>
+            <button>Pet</button>
+            <button>Skill</button>
+            <button>Item</button>
+            <button>Game</button>
     </div>
     <div class="center">
         <h2 class="title">ZZANGGU</h2>
@@ -40,10 +38,15 @@
                 <li class="ques">Age</li>
                 <li class="ans">Senior</li>
             </ul>
-            <ul class="center-list">
+            <ul id="hobby" class="center-list">
                 <li class="ques">Hobby</li>
-                <li class="ans">Running & Bowling</li>
+                <div class="ans">
+                    <input id="inputHobby" type="text">
+                    <button id="addHobby">+</button>
+                </div>
             </ul>
+            <div class="cont" id="container">
+            </div>
 
         </div>
     </div>
@@ -70,6 +73,6 @@
     </div>
 </div>
 
-
+<script src="web.js"></script>
 </body>
 </html>
