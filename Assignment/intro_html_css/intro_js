@@ -1,0 +1,9 @@
+const inputHobby = document.getElementById("inputHobby");
+const addHobby = document.getElementById("addHobby");
+const container = document.getElementById("container");
+
+addHobby.addEventListener('click',function (){
+    const hobbys = document.createElement('p');
+    hobbys.innerText=inputHobby.value;
+    container.appendChild(hobbys);
+})
