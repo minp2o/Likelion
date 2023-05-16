@@ -1,0 +1,47 @@
+import java.util.*;
+import java.util.Scanner;
+public class Bank {
+    //필드
+    private String accountNumber;
+    private String name;
+    private int deposit;
+
+
+    //생성자
+    public Bank(String accountNumber, String name, int deposit){
+        this.accountNumber = accountNumber;
+        this.name = name;
+        this.deposit = deposit;
+    }
+
+    public void deposit(int input){
+        //입금의 조건
+        if(input<=0 ){
+            System.out.println("금액을 정확히 입력하세요.");
+            return;
+        }
+        deposit +=input;
+    }
+    public void outmoney(int out){
+        //출금의 조건
+        if(out<=0 ){
+            System.out.println("금액을 정확히 입력하세요.");
+            return;
+        }
+        if(out>deposit){
+            System.out.println("출금할 금액이 잔고보다 클 수 없습니다.");
+            deposit+=out;
+        }
+        deposit -=out;
+    }
+
+    public String getAccountNumber(){
+        return accountNumber;
+    }
+    public String getname(){
+        return name;
+    }
+    public int getdeposit(){
+        return deposit;
+    }
+}
