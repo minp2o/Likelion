@@ -1,0 +1,118 @@
+import java.util.*;
+import java.util.Scanner;
+
+public class MainBank {
+    private static Bank[] users = new Bank[100];
+    static int number = 0 ;
+    static Scanner sc = new Scanner(System.in);
+
+    //계좌를 인덱스로
+    public static int retrieveIndexByAccountNumber(String accountNumber){
+        for(int i=0; i<number; i++){
+            if(users[i].getAccountNumber().equals(accountNumber)){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    //계좌개설
+    public static void createAccount(){
+        System.out.print("계좌번호를 입력하세요: ");
+        String accountNumber = sc.next();
+        System.out.print("이름을 입력하세요: ");
+        String name = sc.next();
+        System.out.print("예금할 금액을 입력하세요: ");
+        int deposit = sc.nextInt();
+        System.out.println("======계좌개설======");
+        System.out.println("계좌번호: " + accountNumber);
+        System.out.println("이름: " + name);
+        System.out.println("예금: " + deposit);
+        System.out.println("##계좌개설을 완료하였습니다##");
+        System.out.println("===================");
+        users[number] = new Bank(accountNumber,name,deposit);
+        number++;
+    }
+    public static void checkIn(){
+        System.out.println("======입금하기======");
+        System.out.print("입금하실 계좌번호를 입력하세요: ");
+        String accountNumber = sc.next();
+        int index = retrieveIndexByAccountNumber(accountNumber);
+        System.out.println("계좌이름: "+users[index].getname());
+        System.out.println("계좌잔고: "+users[index].getdeposit()+"원");
+        System.out.print("입금하실 금액을 입력하세요: ");
+        int input = sc.nextInt();
+        users[index].deposit(input);
+        System.out.println("##계좌잔고:"+ users[index].getdeposit()+"원");
+        System.out.println("##입금 완료##");
+
+    }
+
+    public static void checkOut(){
+        System.out.println("======출금하기======");
+        System.out.print("출금하실 계좌번호를 입력하세요: ");
+        String accountNumber = sc.next();
+        int index = retrieveIndexByAccountNumber(accountNumber);
+        System.out.println("계좌이름: "+users[index].getname());
+        System.out.println("계좌잔고: "+users[index].getdeposit()+"원");
+        System.out.print("출금하실 금액을 입력하세요: ");
+        int out = sc.nextInt();
+        users[index].outmoney(out);
+        System.out.println("##계좌잔고:"+ users[index].getdeposit()+"원");
+        System.out.println("##출금 완료##");
+    }
+
+    public static void view(){
+        System.out.println("======전체조회======");
+        for(int i = 0; i<number; i++){
+            System.out.println("계좌번호: "+users[i].getAccountNumber()+"이름: " +users[i].getname()+"잔액: "+users[i].getdeposit());
+        }
+    }
+
+
+    public static void main(String[] args) {
+
+        boolean out = false;
+        while(!out){
+            System.out.println("======Bank Menu======");
+            System.out.println("1. 계좌계설");
+            System.out.println("2. 입금하기");
+            System.out.println("3. 출금하기");
+            System.out.println("4. 전체조회");
+            System.out.println("5. 계좌이체");
+            System.out.println("6. 프로그램 종료");
+            System.out.println("=====================");
+            System.out.print("입력: ");
+            Scanner sc = new Scanner(System.in);
+            int num = sc.nextInt();
+
+            switch (num){
+                case 1:
+                    System.out.println("계좌개설");
+                    createAccount();
+                    break;
+                case 2:
+                    System.out.println("입금하기");
+                    checkIn();
+                    break;
+                case 3:
+                    System.out.println("출금하기");
+                    checkOut();
+                    break;
+                case 4:
+                    System.out.println("전체조회");
+                    view();
+                    break;
+//                case 5:
+//                    System.out.println("계좌이체");
+//                    shoot();
+//                    break;
+                case 6:
+                    out = true;
+                    System.out.println("프로그램이 종료됩니다");
+                    break;
+            }
+        }
+    }
+}
